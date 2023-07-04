@@ -195,17 +195,18 @@ const CardComponent = () => {
           position="center center"
         >
           {(close) => (
-            <div className="filter-container">
-              <label>
-                Type
-                <br />
+            <div className=" p-5 py-3 w-auto h-auto flex flex-col ">
+              <p className="font-semibold w-full border-b-[1px] mb-3 border-b-neutral-200 ">Filters</p>
+              <label className="font-semibold flex flex-col">
+                <p className="text-neutral-500 mb-3">Type</p>
+                <div className="flex gap-14 border-b-[1px] pb-4 border-b-neutral-200">
                 <label>
                   <input
                     type="checkbox"
                     value="subscription"
                     checked={cardTypeFilter.includes("subscription")}
                     onChange={handleCardTypeFilter}
-                  />{" "}
+                    />{" "}
                   Subscription
                 </label>
                 <br />
@@ -215,14 +216,16 @@ const CardComponent = () => {
                     value="burner"
                     checked={cardTypeFilter.includes("burner")}
                     onChange={handleCardTypeFilter}
-                  />{" "}
+                    />{" "}
                   Burner
                 </label>
+                    </div>
                 <br />
               </label>
-              <label>
+              <label className="flex flex-col">
                 Cardholder:
                 <select
+                  className="bg-neutral-200 p-4 text-neutral-500 font-semibold mt-2"
                   value={cardholderFilter}
                   onChange={handleCardholderFilter}
                 >
@@ -232,9 +235,9 @@ const CardComponent = () => {
                 </select>
               </label>
               <br />
-              <div className="flex w-full justify-evenly">
-                <button onClick={() => close()}>Apply</button>
-                <button onClick={handleClearFilters}>Clear</button>
+              <div className="flex w-full justify-evenly gap-4">
+                <button className="w-1/2 bg-[#d10448] p-2 rounded-xl text-white font-semibold" onClick={() => close()}>Apply</button>
+                <button className="w-1/2 bg-neutral-200 p-2 rounded-xl text-neutral-600 font-semibold" onClick={handleClearFilters}>Clear</button>
               </div>
             </div>
           )}
@@ -244,40 +247,61 @@ const CardComponent = () => {
       <div className="card-container flex flex-wrap gap-10 m-8">
         {filteredData.map((item) => (
           <div
-            className="border-[1px] p-6 rounded-lg shadow-lg w-72"
+            className="border-[1px] p-6 rounded-lg shadow-lg w-96"
             key={item.name}
           >
             <div className="flex justify-between">
               <div>
                 <p className="font-bold text-2xl">{item.name}</p>
                 <p>
-                  Memberfive <span className="">.</span> Budget
+                <p className="text-neutral-500">Limit: {item.limit}</p>
                 </p>
               </div>
               image
             </div>
-            <div className="flex justify-around">
-              <div className="flex flex-col"> <p>
-                
-                Amount 
-                </p>
-                <p>
-                  100 SGD
-                </p>
-                </div>
-              <p> Frequency </p>
-              <p>Expiry: {item.expiry}</p>
+            <div className="flex justify-around my-2 ">
+              <div className="flex flex-col">
+                {" "}
+                <p className="text-neutral-500">Amount</p>
+                <p>100 SGD</p>
+              </div>
+              <div className="flex flex-col">
+                {" "}
+                <p className="text-neutral-500">Frequency</p>
+                <p>100 SGD</p>
+              </div>
+              <div className="flex flex-col">
+                {" "}
+                <p className="text-neutral-500">Expiry</p>
+                <p>{item.expiry}</p>
+              </div>
             </div>
 
-            <p>
-              Spent: {item.spent.value} {item.spent.currency}
+            <div className="w-full flex my-3">
+              <div className="w-1/2 h-2 rounded-l-full bg-green-500"></div>
+              <div className="w-1/2 h-2 rounded-r-full bg-[#d10448]"></div>
+            </div>
+
+            <p className="flex justify-between text-neutral-500">
+              <div className="flex items-center gap-2">
+                <div className="w-3 h-3 rounded-full bg-green-500 "></div>
+              Spent 
+              </div>
+              <span className="font-semibold text-black">
+                {item.spent.value} {item.spent.currency}
+                </span>
             </p>
-            <p>
-              Available to Spend: {item.available_to_spend.value}{" "}
+            <p className="flex justify-between text-neutral-500">
+              <div className="flex items-center gap-2">
+                <div className="w-3 h-3 rounded-full bg-[#d10448]"></div>
+              Balance
+              </div>
+              <span className="font-semibold text-black">
+              {item.available_to_spend.value}{" "}
               {item.available_to_spend.currency}
+                </span>
             </p>
-            <p>Card Type: {item.card_type}</p>
-            <p>Limit: {item.limit}</p>
+            
           </div>
         ))}
       </div>

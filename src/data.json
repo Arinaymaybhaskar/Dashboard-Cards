@@ -30,6 +30,7 @@
           "currency": "SGD"
         },
         "card_type": "subscription",
+        "expiry": "31 Dec",
         "limit": 10,
         "status": "active"
       },
