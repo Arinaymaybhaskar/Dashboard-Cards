@@ -1,9 +1,5 @@
 
-# Volopay
-
-Test Assesment for Volopay.
-
-
+Created an Application to sort all your Credit and debit cards
 
 
 ## Deployment
